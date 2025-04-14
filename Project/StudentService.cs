@@ -1,6 +1,6 @@
-﻿using ConsoleApp1.DAL.Repositories;
-using Project.DAL;
+﻿using Project.DAL;
 using Project.DAL.Entities;
+using Project.DAL.Repositories;
 
 namespace ConsoleApp1.Services
 {

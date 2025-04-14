@@ -1,9 +1,9 @@
-﻿using Project.DAL;
-using Project.DAL.Entities;
+﻿using Project.DAL.Entities;
 
 using Project;
+using Project.DAL.Data;
 
-namespace ConsoleApp1.DAL.Repositories
+namespace Project.DAL.Repositories
 {
     public class StudentRepository
     {
