@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Repositories
 {
-    internal class OrederRepository
+    public class OrderRepository
     {
         
         private readonly AppDbContext _context;
-        public OrederRepository() 
+        public OrderRepository() 
         {
             _context = new AppDbContext();
         }
@@ -20,29 +20,36 @@ namespace Project.DAL.Repositories
         {
             return _context.Orders;
         }
-        public Order? GetOrderById(int id)
-        {
-            return _context.Orders.FirstOrDefault(o => o.Id == id);
-        }
         public void AddOrder(Order orders)
         {
             _context.Orders.Add(orders);
             _context.SaveChanges();
         }
-        public void AddOrder(List<Order> orders)
+        public void AddOrders(List<Order> orders)
         {
             _context.Orders.AddRange(orders);
             _context.SaveChanges();
         }
+        public Order? GetOrderById(int id)
+        {
+            return _context.Orders.FirstOrDefault(o => o.Id == id);
+        }
+        public Order? GetOrderByProductName(string name)
+        {
+            return _context.Orders.FirstOrDefault(o => o.ProductName == name);
+        }
+
         public void DeleteOrder(Order order)
         {
             _context.Orders.Remove(order);
             _context.SaveChanges();
         }
-        public void UpdateOrders(List<Order> orders) 
+        public void UpdateOrder(Order order) 
         {
-            _context.Orders.AddRange(orders);
+            _context.Orders.Add(order);
+            _context.SaveChanges();
         }
+
 
 
     }

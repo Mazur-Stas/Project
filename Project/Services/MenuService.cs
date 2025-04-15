@@ -2,6 +2,7 @@
 using Project;
 using System.ComponentModel;
 using Project.DAL;
+using System.Xml.Serialization;
 
 namespace Project.Services
 {
@@ -15,7 +16,8 @@ namespace Project.Services
         }
 
         public void Menu()
-        {     
+        {
+            
             while (true)
             {
                 Console.WriteLine("1. Add Studnet");
@@ -109,8 +111,7 @@ namespace Project.Services
         {
             var students = _studentService.GetAllStudents();
             foreach (var student in students)
-            {
-                Console.Clear();
+            { 
                 Console.WriteLine($"id: {student.Id}, Name: {student.Name}, Desc: {student.Description}");
             }
         }

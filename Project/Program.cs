@@ -12,8 +12,8 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            MenuService menu = new MenuService();
-            menu.Menu();
+            MenuService ServiceMenu = new MenuService();
+            ServiceMenu.Menu();
 
             var context = new AppDbContext();
 
