@@ -7,7 +7,7 @@ namespace Project.Services
 {
     public class MenuService
     {
-        private readonly StudentService _studentService;
+        private  StudentService _studentService;
 
         public MenuService()
         {
@@ -15,68 +15,94 @@ namespace Project.Services
         }
 
         public void Menu()
-        {
-            Console.WriteLine("1. Додати студента");
-            Console.WriteLine("2. Додати декілька студентів");
-            Console.WriteLine("3. Оновити студента");
-            Console.WriteLine("4. Видалити студента");
-            Console.WriteLine("5. Отримати всіх студентів");
-            Console.WriteLine("6. Отримати студента за ID");
-            Console.WriteLine("7. Отримати студента за іменем");
-
-            var choice = Console.ReadLine();
-
-            switch (choice)
+        {     
+            while (true)
             {
-                case "1":
-                    Console.WriteLine("Введіть ім'я студента:");
-                    var name = Console.ReadLine();
-                    Console.WriteLine("Введіть опис студента:");
-                    var desc = Console.ReadLine();
-                    _studentService.AddStudent(new Student { Name = name, Description = desc });
-                    Console.WriteLine("Студента додано!");
-                    Console.Clear();
-                    break;
+                Console.WriteLine("1. Add Studnet");
+                Console.WriteLine("2. Update Student by Id");
+                Console.WriteLine("3. Delete Student by Id");
+                Console.WriteLine("4. Get all Student");
+                Console.WriteLine("5. Get student by Id");
+                Console.WriteLine("6. Get student by name");
+                string choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        Console.WriteLine("Enter Name:");
+                        string name = Console.ReadLine();
 
-                case "2":
-                    break;
-                    Console.Clear();
+                        Console.WriteLine("Enter Description:");
+                        string desc = Console.ReadLine();
 
-                case "3":
-                    break;
-                    Console.Clear();
+                        Console.Clear();
+                        var student = new Student { Name = name, Description = desc };
+                        _studentService.AddStudent(student);
+                        Console.WriteLine("Adding succeed");
 
-                case "4":
-                    Console.Clear();
-                    break;
+                        break;
 
-                case "5":
+                    case "2":
+                        Console.WriteLine("Enter Id:");
+                        string s = Console.ReadLine();
+                        int.TryParse(s, out int res);
 
-                    Console.Clear();
-                    break;
+                        Console.WriteLine("Enter Name:");
+                        string name1 = Console.ReadLine();
 
-                case "6":
-                    GetStudentById();
-                    Console.Clear();
-                    break;
+                        Console.WriteLine("Enter Description:");
+                        string desc1 = Console.ReadLine();
 
-                case "7":
-                    GetStudentByName();
-                    break;
+                        Console.Clear();
+                        _studentService.UpdateStudent(res, name1, desc1);
+                        Console.WriteLine("Update succeed");
+                        break;
 
-                default:
-                    Console.WriteLine("Невірний вибір");
-                    break;
+
+                    case "3":
+                        Console.WriteLine("Enter Id:");
+                        string del = Console.ReadLine();
+                        int.TryParse(del, out int res1);
+
+                        Console.Clear();
+                        _studentService.DeleteById(res1);
+                        Console.WriteLine("Delete succeed");
+
+                        break;
+
+
+                    case "4":
+                        Console.Clear();
+                        GetAllStudents();
+                        break;
+
+                    case "5":
+                        Console.Clear();
+                        GetStudentById();
+                        break;
+
+                    case "6":
+                        Console.Clear();
+                        GetStudentByName();
+                        break;
+                }
             }
         }
 
 
         void GetStudentByName()
         {
-            Console.WriteLine("Введіть ім'я студента:");
+            Console.WriteLine("Enter student name:");
             string name = Console.ReadLine();
             var student = _studentService.GetStudentByName(name);
-            Console.WriteLine($"ID: {student.Id}, Ім'я: {student.Name}, Опис: {student.Description}");
+            Console.WriteLine($"ID: {student.Id}, Name: {student.Name}, Desc: {student.Description}");
+        }
+        void GetStudentById()
+        {
+            Console.WriteLine("Enter Id:");
+            string s = Console.ReadLine();
+            int.TryParse(s, out int id);
+            Student student = _studentService.GetStudentById(id);  
+            Console.WriteLine($"ID: {student.Id}, Name: {student.Name}, Desc: {student.Description}");
         }
 
         void GetAllStudents()
@@ -85,19 +111,9 @@ namespace Project.Services
             foreach (var student in students)
             {
                 Console.Clear();
-                Console.WriteLine($"ID: {student.Id}, Ім'я: {student.Name}, Опис: {student.Description}");
+                Console.WriteLine($"id: {student.Id}, Name: {student.Name}, Desc: {student.Description}");
             }
         }
-        private void GetStudentById()
-        {
-            Console.WriteLine("Введіть ID студента:");
-            if (int.TryParse(Console.ReadLine(), out var id))
-            {
-                Console.WriteLine($"ID is: {id}");
-            }
-            var student = _studentService.GetStudentById(id);
-            Console.Clear();
-            Console.WriteLine($"ID: {student.Id}, Ім'я: {student.Name}, Опис: {student.Description}");
-        }
+
     }
 }

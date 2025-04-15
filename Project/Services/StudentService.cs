@@ -60,6 +60,16 @@ namespace Project.Services
             student.Description = desc;
             _studentRepository.UpdateStudent(student);
         }
+
+        public void UpdateStudent(int id, string name, string desc)
+        {
+            var student = _studentRepository.GetAllStudents()
+                                    .FirstOrDefault(s => s.Id == id);
+
+            student.Description = desc;
+            student.Name = name;
+            _studentRepository.UpdateStudent(student);
+        }
         public void DeleteStudent(Student student)
         {
             _studentRepository.DeleteStudent(student);

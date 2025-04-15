@@ -1,19 +1,21 @@
 ﻿using Project;
 using System;
-using ConsoleApp1.Services;
+using Project.Services;
 using Project.DAL;
 using Project.DAL.Data;
 using Project.DAL.Entities;
 using Project.DAL.Enteties;
+using Microsoft.EntityFrameworkCore;
 namespace Project
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            MenuService menu = new MenuService();
+            menu.Menu();
 
-
-            var contex = new AppDbContext();
+            var context = new AppDbContext();
 
             var user = new User()
             {
@@ -34,33 +36,23 @@ namespace Project
                 CreatedDate = DateTime.Now
             };
 
+            //user.Orders.Add(order1);
+            //user.Orders.Add(order2);
 
-            user.Orders.Add(order1);
-            user.Orders.Add(order2);
+            //context.User.Add(user);
+            //context.SaveChanges();
 
-            contex.User.Add(user);
-            contex.SaveChanges();
+            //var userWithOrders = context.User.Include(x => x.Orders);
 
+            //foreach (var u in userWithOrders)
+            //{
+            //    Console.WriteLine($"User: {u.Name} \n \t orders: ");
 
-
-
-
-
-
-
-
-
-
-
-
-
-            /*var start = new MenuService();
-
-            while (true)
-            {
-                start.Menu();
-            }*/
-
+            //    foreach (var o in u.Orders)
+            //    {
+            //        Console.WriteLine($"\t\t Product: {o.ProductName} - DataCreate: {o.CreatedDate}");
+            //    }
+            //}
 
 
         }

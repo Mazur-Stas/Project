@@ -24,11 +24,12 @@ namespace Project.DAL.Repositories
         {
             return _context.Orders.FirstOrDefault(o => o.Id == id);
         }
-        //public Order? GetOrderByName(string name)
-        //{
-        //    return _context.Orders.FirstOrDefault(o => o.name == name);
-        //}
-        public void AddOrders(List<Order> orders)
+        public void AddOrder(Order orders)
+        {
+            _context.Orders.Add(orders);
+            _context.SaveChanges();
+        }
+        public void AddOrder(List<Order> orders)
         {
             _context.Orders.AddRange(orders);
             _context.SaveChanges();

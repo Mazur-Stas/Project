@@ -8,7 +8,7 @@ namespace Project.DAL.Data
 {
     public class AppDbContext : DbContext
     {
-        private string _connectionString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = UN; Integrated Security = True; Connect Timeout = 30;";
+        //private string _connectionString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = UN; Integrated Security = True; Connect Timeout = 30;";
         public DbSet<Student> Students { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -22,7 +22,7 @@ namespace Project.DAL.Data
                 .Build();
 
 
-           //var _connectionString = connection.GetConnectionString("DefualtConection");
+           var _connectionString = connection.GetConnectionString("DefaultConnection");
 
             optionsBuilder.UseSqlServer(_connectionString);
 
