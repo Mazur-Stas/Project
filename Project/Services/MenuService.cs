@@ -2,7 +2,8 @@
 using Project;
 using System.ComponentModel;
 using Project.DAL;
-namespace ConsoleApp1.Services
+
+namespace Project.Services
 {
     public class MenuService
     {

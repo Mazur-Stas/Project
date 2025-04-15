@@ -2,7 +2,7 @@
 using Project.DAL.Entities;
 using Project.DAL.Repositories;
 
-namespace ConsoleApp1.Services
+namespace Project.Services
 {
     public class StudentService
     {
