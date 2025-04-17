@@ -9,32 +9,31 @@ using Project.DAL.Enteties;
 
 namespace Project.DAL
 {
-    public class UserRepository
+    public class ProductRepository
     {
         private readonly AppDbContext _context;
 
-        public UserRepository()
+        public ProductRepository()
         {
             _context = new AppDbContext();
         }
-        public IEnumerable<User> GetAll()
+        public IEnumerable<Product> GetAllProduct()
         {
-            return _context.User;
+            return _context.Products;
         }
-
-        public void Add(User User)
+        public void Add(Product Product)
         {
-            _context.User.Add(User);
+            _context.Products.Add(Product);
             _context.SaveChanges();
         }
-        public void Update(User User)
+        public void Update(Product Product)
         {
-            _context.User.Update(User);
+            _context.Products.Update(Product);
             _context.SaveChanges();
         }
-        public void Delete(User User)
+        public void Delete(Product Product)
         {
-            _context.User.Remove(User);
+            _context.Products.Remove(Product);
             _context.SaveChanges();
         }
     }
